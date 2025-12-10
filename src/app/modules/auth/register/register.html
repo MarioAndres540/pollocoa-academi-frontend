@@ -1,1 +1,84 @@
-<p>register works!</p>
+<div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-500 to-orange-400 px-4">
+  <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-6">
+    <!-- Logo -->
+    <div class="text-center mb-6">
+      <div class="text-5xl mb-2">🍗</div>
+      <h1 class="text-2xl font-bold text-gray-800">Pollocoa</h1>
+      <p class="text-gray-600">Sistema de Gestión Académica</p>
+    </div>
+
+    <!-- Formulario -->
+    <form [formGroup]="formRegister" (ngSubmit)="onSubmitRegister()" autocomplete="off" class="space-y-4">
+      <!-- Nombre -->
+      <div>
+        <label for="nombre" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
+        <input
+          id="nombre"
+          type="text"
+          formControlName="nombre"
+          placeholder="Juan Pérez"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
+          required
+        />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="profesor@pollocoa.com"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
+          required
+        />
+      </div>
+
+      <!-- Contraseña -->
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Mínimo 6 caracteres"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
+          required
+        />
+      </div>
+
+      <!-- Confirmar contraseña -->
+      <div>
+        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          placeholder="Repita su contraseña"
+          class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-red-500 focus:ring-red-500 sm:text-sm"
+          required
+        />
+      </div>
+
+      <!-- Botón -->
+      <button
+        type="submit"
+        class="w-full bg-red-600 text-white py-2 px-4 rounded-md shadow hover:bg-red-700 transition"
+      >
+        Crear Cuenta
+      </button>
+
+      <!-- Link a login -->
+      <div class="text-center text-sm text-gray-600 mt-2">
+        ¿Ya tienes una cuenta?
+        <a routerLink="/login" class="text-red-600 hover:underline">Inicia sesión aquí</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-6 text-xs text-white text-center">
+    © 2025 Pollocoa - Excelencia en Educación y Cárnicos
+  </footer>
+</div>
