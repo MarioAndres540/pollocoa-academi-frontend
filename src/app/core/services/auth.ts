@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { AuthDto, RegistertDto } from '../models/auth.model';
 import { environment } from '../../enviroment';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +14,13 @@ export class Auth {
   URI = environment.apiUrl + '/auth'
 
   login(body: AuthDto){
-    return this.http.post(this.URI + '/login', body).pipe(
+    return this.http.post(this.URI + '/login', body, { withCredentials: true }).pipe(
       map((resp: any) => {
+        console.log('Respuesta login',resp);
         return resp
       }),
       catchError((error: any)=> {
-        return error
+        return throwError(() => error)
       }) 
     )
   }
@@ -30,7 +31,7 @@ export class Auth {
         return resp
       }),
       catchError((error: any)=> {
-        return error
+        return throwError(() => error)
       })
     )
   }

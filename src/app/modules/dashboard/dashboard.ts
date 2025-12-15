@@ -6,7 +6,7 @@ import { Router, RouterModule } from '@angular/router';
   selector: 'app-dashboard',
   imports: [RouterModule],
   templateUrl: './dashboard.html',
-  styleUrl: './dashboard.css',
+  styleUrls: ['./dashboard.css'],
 })
 export class Dashboard {
    private router = inject(Router)

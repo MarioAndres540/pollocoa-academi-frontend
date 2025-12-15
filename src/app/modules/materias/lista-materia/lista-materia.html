@@ -1,1 +1,101 @@
-<p>lista-materia works!</p>
+<div class="bg-white p-6 rounded-lg shadow">
+    <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-bold text-gray-800">Gestión de Materias</h2>
+        <button class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition" (click)="nuevaMateria()">
+            + Nueva Materia
+        </button>
+        @if (mostrarFormulario) {
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 relative">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Nueva Materia</h3>
+
+                <!-- Formulario embebido -->
+                <app-form-materia (cerrar)="cerrarFormulario()"></app-form-materia>
+
+                <!-- Botón cerrar -->
+                <button (click)="cerrarFormulario()" class="absolute top-2 right-2 text-gray-500 hover:text-red-600">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- Export buttons -->
+    <div class="flex gap-2 mb-4">
+        <button class="bg-green-500 text-white text-sm px-3 py-1 rounded hover:bg-green-600"
+            (click)="exportarExcel('XLSX')">XLSX</button>
+        <button class="bg-green-400 text-white text-sm px-3 py-1 rounded hover:bg-green-500"
+            (click)="exportarExcel('XLS')">XLS</button>
+        <button class="bg-blue-400 text-white text-sm px-3 py-1 rounded hover:bg-blue-500"
+            (click)="exportarPdf()">PDF</button>
+    </div>
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full border border-gray-200 text-sm">
+            <thead class="bg-gray-100 text-gray-700">
+                <tr>
+                    <th class="px-4 py-2 text-left">Nombre</th>
+                    <th class="px-4 py-2 text-left">Codigo</th>
+                    <th class="px-4 py-2 text-left">description</th>
+                    <th class="px-4 py-2 text-left">Estado</th>
+                    <th class="px-4 py-2 text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (materias().length === 0) {
+                <tr>
+                    <td colspan="5" class="px-4 py-6 text-center text-gray-500">
+                        No hay Materias registradas
+                    </td>
+                </tr>
+                }
+                @for (materia of materias(); track materia.id) {
+                <tr class="border-t">
+                    <td class="px-4 py-2">{{ materia.nombre }}</td>
+                    <td class="px-4 py-2">{{ materia.codigo }}</td>
+                    <td class="px-4 py-2">{{ materia.description }}</td>
+                    <td class="px-4 py-2">
+                        <span [ngClass]="{
+                            'text-green-600': materia.isActive,
+                            'text-gray-500': !materia.isActive
+                        }">
+                            {{ materia.isActive ? 'Activo' : 'Inactivo' }}
+                        </span>
+                    </td>
+
+                    <td class="px-4 py-2 text-center space-x-2">
+                        <!-- Botón editar -->
+                        <button class="text-blue-600 hover:underline">
+                            <span class="material-symbols-outlined">
+                                edit
+                            </span>
+                        </button>
+
+                        <!-- Botón estado con ícono condicional -->
+                        <button class="text-gray-600 hover:text-red-600">
+                            @if (materia.estado === 'Activo') {
+                            <span class="material-symbols-outlined text-red-600">
+                                sentiment_very_dissatisfied
+                            </span>
+                            } @else {
+                            <span class="material-symbols-outlined text-green-600">
+                                sentiment_very_satisfied
+                            </span>
+                            }
+                        </button>
+
+                        <!-- Botón eliminar -->
+                        <button class="text-grey-600 hover:underline">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

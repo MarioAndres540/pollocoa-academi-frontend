@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-table',
   imports: [],
   templateUrl: './table.html',
-  styleUrl: './table.scss',
+  styleUrls: ['./table.scss'],
 })
 export class Table {
 

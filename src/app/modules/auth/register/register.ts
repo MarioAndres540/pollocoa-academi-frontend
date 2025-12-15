@@ -15,7 +15,7 @@ import { RegistertDto } from '../../../core/models/auth.model';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './register.html',
-  styleUrl: './register.css',
+  styleUrls: ['./register.css'],
 })
 export class Register {
   private authService = inject(Auth);
@@ -71,5 +71,9 @@ export class Register {
         alert('Error inesperado al registrar');
       },
     });
+  }
+
+  iniciarSesion() {
+    this.router.navigate(['/login']);
   }
 }

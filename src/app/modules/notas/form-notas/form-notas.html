@@ -1,1 +1,27 @@
-<p>form-notas works!</p>
+<form class="space-y-4">
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Nombre del estudiante</label>
+    <input type="text" class="w-full border rounded px-3 py-2" />
+  </div>
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Materia</label>
+    <input type="text" class="w-full border rounded px-3 py-2" />
+  </div>
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Valor</label>
+    <input type="email" class="w-full border rounded px-3 py-2" />
+  </div>
+  <div>
+    <label class="block text-sm font-medium text-gray-700">Discripcion</label>
+    <input type="text" class="w-full border rounded px-3 py-2" />
+  </div>
+
+  <div class="flex justify-end gap-2 mt-4">
+    <button type="button" (click)="cancelar()" class="px-4 py-2 rounded bg-gray-300 hover:bg-gray-400">
+      Cancelar
+    </button>
+    <button type="button" (click)="guardar()" class="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700">
+      Guardar
+    </button>
+  </div>
+</form>

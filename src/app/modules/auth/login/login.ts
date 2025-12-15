@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
     ReactiveFormsModule
 ],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrls: ['./login.css'],
 })
 export class Login {
 
